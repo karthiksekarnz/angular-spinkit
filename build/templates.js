@@ -74,6 +74,15 @@ angular.module('angular-spinkit').run(['$templateCache', function($templateCache
   );
 
 
+  $templateCache.put('src/templates/fadingDotsSpinner.html',
+    "<div class=\"fading-dots-spinner\">\n" +
+    "    <div class=\"dot1\"></div>\n" +
+    "    <div class=\"dot2\"></div>\n" +
+    "    <div class=\"dot3\"></div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('src/templates/pulseSpinner.html',
     "<div class=\"pulse-spinner\"></div>\n"
   );

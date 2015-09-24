@@ -18,7 +18,9 @@ angular.module('angular-spinkit',
     'ngThreeBounceSpinner',
     'ngCubeGridSpinner',
     'ngWordPressSpinner',
-    'ngFadingCircleSpinner'
+    'ngFadingCircleSpinner',
+    'ngFadingDotsSpinner',
+    'ngSpinkitImagePreloader'
   ]);
 
 angular.module('ngRotatingPlaneSpinner', []).directive('rotatingPlaneSpinner', function () {
@@ -98,8 +100,64 @@ angular.module('ngFadingCircleSpinner', []).directive('fadingCircleSpinner', fun
   };
 });
 
+angular.module('ngFadingDotsSpinner', []).directive('fadingDotsSpinner', function () {
+  return {
+    restrict: 'E',
+    templateUrl: 'src/templates/fadingDotsSpinner.html'
+  };
+});
 
+angular.module('ngSpinkitImagePreloader', []).directive('spinkitImagePreloader', ['$compile', '$injector', '$rootScope', function ($compile, $injector, $rootScope) {
+  return {
+    restrict: 'A',
+    scope: {
+      ngSrc: '@',
+      spinkitImagePreloader: '@',
+      spinkitImagePreloaderClass: '@'
+    },
+    link: function(scope, element, attrs) {
+      var spinnerWrapper,
+          spinnerWrapperClass = scope.spinkitImagePreloaderClass || 'spinner-wrapper',
+          spinner;
 
+      // Check for the existence of the spinkit-directive
+      if(!$injector.has(attrs.$normalize(scope.spinkitImagePreloader) + 'Directive'))
+        return;
+
+      // Create and configure DOM-spinner-elements
+      spinnerWrapper = angular.element('<div/>').addClass(spinnerWrapperClass),
+      spinner = $compile('<' + scope.spinkitImagePreloader + '/>')(scope);
+      spinnerWrapper.append(spinner);
+      spinnerWrapper.css('overflow', 'hidden');
+
+      element.after(spinnerWrapper);
+
+      // Copy dimensions (inline and attributes) from the image to the spinner wrapper
+      if(element.css('width'))
+        spinnerWrapper.css('width', element.css('width'));
+
+      if(attrs.width)
+        spinnerWrapper.css('width', attrs.width + 'px');
+
+      if(element.css('height'))
+        spinnerWrapper.css('height', element.css('height'));
+
+      if(attrs.height)
+        spinnerWrapper.css('height', attrs.height + 'px');
+
+      element.on('load', function () {
+        spinnerWrapper.css('display', 'none');
+        element.css('display', 'block');
+        $rootScope.$broadcast('angular-spinkit:imageLoaded');
+      });
+
+      scope.$watch('ngSrc', function () {
+        spinnerWrapper.css('display', 'block');
+        element.css('display', 'none');
+      });
+    }
+  };
+}]);
 angular.module('angular-spinkit').run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -172,6 +230,15 @@ angular.module('angular-spinkit').run(['$templateCache', function($templateCache
     "  <div class=\"fading-circle10 fading-circle\"></div>\n" +
     "  <div class=\"fading-circle11 fading-circle\"></div>\n" +
     "  <div class=\"fading-circle12 fading-circle\"></div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('src/templates/fadingDotsSpinner.html',
+    "<div class=\"fading-dots-spinner\">\n" +
+    "    <div class=\"dot1\"></div>\n" +
+    "    <div class=\"dot2\"></div>\n" +
+    "    <div class=\"dot3\"></div>\n" +
     "</div>"
   );
 
