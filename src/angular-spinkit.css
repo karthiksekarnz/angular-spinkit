@@ -557,3 +557,34 @@
   0%, 39%, 100% { opacity: 0 }
   40% { opacity: 1 }
 }
+
+/* fading dots spinner */
+.fading-dots-spinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.fading-dots-spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.fading-dots-spinner .dot1{
+  -webkit-animation: fadedelay 0.1s infinite ease-in-out both;
+  animation: fadedelay 0.1s infinite ease-in-out both;
+}
+
+.fading-dots-spinner .dot2 {
+  -webkit-animation: fadedelay 0.2s infinite ease-in-out both;
+  animation: fadedelay 0.3s infinite ease-in-out both;
+}
+
+.fading-dots-spinner .dot3 {
+  -webkit-animation: fadedelay 0.3s infinite ease-in-out both;
+  animation: fadedelay 0.3s infinite ease-in-out both;
+}
+

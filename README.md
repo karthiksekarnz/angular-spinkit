@@ -34,6 +34,7 @@ SpinKit (https://github.com/tobiasahlin/SpinKit) spinners for AngularJS
 <cube-grid-spinner></cube-grid-spinner>
 <word-press-spinner></word-press-spinner>
 <fading-circle-spinner></fading-circle-spinner>
+<fading-dots-spinner></fading-dots-spinner>
   ```
 
 5. If you want to show the spinner while an image is loading just use the 'spinkit-image-preloader' directive:
@@ -54,4 +55,4 @@ SpinKit (https://github.com/tobiasahlin/SpinKit) spinners for AngularJS
 6. Add all your requests and ideas in the issues area or send us a pull request!
 
 ## Example
-You can check out this live example here: http://jsfiddle.net/Urigo/638AA/18/
+You can check out this live example here: http://jsfiddle.net/ksekar/y6errrdw/

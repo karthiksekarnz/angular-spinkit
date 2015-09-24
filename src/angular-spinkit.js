@@ -19,6 +19,7 @@ angular.module('angular-spinkit',
     'ngCubeGridSpinner',
     'ngWordPressSpinner',
     'ngFadingCircleSpinner',
+    'ngFadingDotsSpinner',
     'ngSpinkitImagePreloader'
   ]);
 
@@ -96,6 +97,13 @@ angular.module('ngFadingCircleSpinner', []).directive('fadingCircleSpinner', fun
   return {
     restrict: 'E',
     templateUrl: 'src/templates/fadingCircleSpinner.html'
+  };
+});
+
+angular.module('ngFadingDotsSpinner', []).directive('fadingDotsSpinner', function () {
+  return {
+    restrict: 'E',
+    templateUrl: 'src/templates/fadingDotsSpinner.html'
   };
 });
 
